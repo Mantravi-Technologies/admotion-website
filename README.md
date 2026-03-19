@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AdMotion Website
 
-## Getting Started
+Modern, animated marketing site for **AdMotion** — Advertising, Marketing & Branding agency (Lucknow, Gomti Nagar).
 
-First, run the development server:
+## Stack
+
+- **Next.js 16** (App Router) + TypeScript
+- **Tailwind CSS v4** — design tokens, responsive layout
+- **GSAP + ScrollTrigger** — scroll-triggered reveals, parallax, pinned horizontal section
+- **Lenis** — smooth scrolling (synced with GSAP)
+- **Framer Motion** — magnetic button, Bento hover, menu transitions
+
+## Design system
+
+- **Background:** `#0F0F13` (Deep Space Black)
+- **Surface/Cards:** `#1A1A20` (Dark Anthracite)
+- **Accents:** Magenta `#E01A4F`, Cyan `#00B4D8`, Yellow `#FFD166`
+- **Typography:** Space Grotesk (headings), Plus Jakarta Sans (body)
+
+## Run locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**If the site looks unstyled (white background, Times font, huge black “person” icon):** your CSS bundle didn’t load—usually after a failed or cached dev build. Stop the server, run **`npm run dev:clean`**, hard-refresh the browser (Ctrl+Shift+R).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**If you see ChunkLoadError / 500 on CSS or JS in dev:** same fix—`npm run dev:clean`. Default `npm run dev` uses **Webpack**; use `npm run dev:turbo` only if you want Turbopack.
 
-## Learn More
+**Typo:** the start command is `npm run dev`, not `npm starat`.
 
-To learn more about Next.js, take a look at the following resources:
+## Build
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run build
+npm start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Structure
 
-## Deploy on Vercel
+- `src/app/` — layout, globals, page
+- `src/components/providers/` — Lenis smooth scroll
+- `src/components/sections/` — Header, Hero, Services (Bento), Portfolio, WhyAdMotion, About, Footer
+- `src/components/ui/` — CursorGlow, MagneticButton, BentoCard
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Replace portfolio placeholders with real images and update contact details in `Footer.tsx` for production.
