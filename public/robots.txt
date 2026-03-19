@@ -1,0 +1,6 @@
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Sitemap (update the host if you use a different domain)
+Sitemap: https://www.admotion.in/sitemap.xml

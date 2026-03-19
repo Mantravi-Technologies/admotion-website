@@ -25,10 +25,23 @@ export const metadata: Metadata = {
   title: "AdMotion | Advertising · Marketing · Branding | Lucknow",
   description:
     "Full-service marketing company specializing in advertising, photography, and film. OOH, cinema, LED van, digital wall wraps & more. Gomti Nagar, Lucknow.",
+  metadataBase: new URL("https://www.admotion.in"),
+  icons: {
+    icon: "/images/admotion-logo.png",
+    apple: "/images/admotion-logo.png",
+  },
   openGraph: {
     title: "AdMotion | Advertising · Marketing · Branding",
     description:
       "Innovative outdoor advertising & marketing. One roof across India. Lucknow.",
+    url: "https://www.admotion.in",
+    siteName: "AdMotion",
+    type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true },
   },
 };
 
