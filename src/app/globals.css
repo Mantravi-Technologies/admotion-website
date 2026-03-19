@@ -87,6 +87,15 @@ body {
   outline-offset: 2px;
 }
 
+/* Anchor scroll targets: leave room for fixed header so section titles stay visible */
+#services,
+#work,
+#why-admotion,
+#about,
+#contact {
+  scroll-margin-top: 5.5rem;
+}
+
 /* ============================================
    Hero background — animated orbs (ad/motion vibe)
    ============================================ */

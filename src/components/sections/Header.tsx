@@ -33,13 +33,13 @@ export function Header() {
 
         <nav className="hidden md:flex md:gap-8">
           {NAV_LINKS.map((link) => (
-            <Link
+            <a
               key={link.href}
               href={link.href}
               className="text-text-muted transition-colors hover:text-white"
             >
               {link.label}
-            </Link>
+            </a>
           ))}
         </nav>
 
@@ -65,14 +65,14 @@ export function Header() {
             className="flex flex-col gap-4 border-t border-surface/50 bg-bg/95 px-6 py-4 backdrop-blur-md md:hidden"
           >
             {NAV_LINKS.map((link) => (
-              <Link
+              <a
                 key={link.href}
                 href={link.href}
                 className="text-text-muted transition-colors hover:text-white"
                 onClick={() => setOpen(false)}
               >
                 {link.label}
-              </Link>
+              </a>
             ))}
           </motion.nav>
         )}

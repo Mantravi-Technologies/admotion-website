@@ -72,7 +72,7 @@ export function Services() {
           {PORTFOLIO_INTRO}
         </p>
 
-        <div className="admotion-bento mt-5 grid grid-cols-1 gap-2 sm:mt-8 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
+        <div className="admotion-bento mt-5 grid grid-cols-1 gap-1.5 sm:mt-8 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
           {SERVICES.map((service, i) => (
             <div
               key={service.id}

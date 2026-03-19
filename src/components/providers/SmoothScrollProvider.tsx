@@ -38,6 +38,7 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
       syncTouchLerp: isTouch ? 0.1 : 0.075,
       touchMultiplier: isTouch ? 1 : 1.15,
       wheelMultiplier: 0.9,
+      anchors: true,
     });
 
     setLenis(instance);

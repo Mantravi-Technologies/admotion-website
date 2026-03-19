@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { CONTACT, BRAND } from "@/content/site";
 
@@ -77,15 +76,15 @@ export function Footer() {
         © {new Date().getFullYear()} {BRAND.name}. {BRAND.tagline}
       </p>
       <nav className="flex items-center gap-6 text-xs text-text-muted md:gap-8 md:text-sm">
-        <Link href="#contact" className="transition-colors hover:text-white">
+        <a href="#contact" className="transition-colors hover:text-white">
           Contact
-        </Link>
-        <Link href="#services" className="transition-colors hover:text-white">
+        </a>
+        <a href="#services" className="transition-colors hover:text-white">
           Services
-        </Link>
-        <Link href="#work" className="transition-colors hover:text-white">
+        </a>
+        <a href="#work" className="transition-colors hover:text-white">
           Work
-        </Link>
+        </a>
       </nav>
     </div>
     </>
