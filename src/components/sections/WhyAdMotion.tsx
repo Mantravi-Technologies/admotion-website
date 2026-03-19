@@ -104,10 +104,16 @@ export function WhyAdMotion() {
     };
 
     run();
-    const ro = new ResizeObserver(() => {
-      run();
-      ScrollTrigger.refresh();
-    });
+    let refreshT: ReturnType<typeof setTimeout> | null = null;
+    const debouncedRefresh = () => {
+      if (refreshT) clearTimeout(refreshT);
+      refreshT = setTimeout(() => {
+        run();
+        ScrollTrigger.refresh();
+        refreshT = null;
+      }, 120);
+    };
+    const ro = new ResizeObserver(debouncedRefresh);
     ro.observe(strip);
     ro.observe(wrap);
     ro.observe(pin);
@@ -118,6 +124,7 @@ export function WhyAdMotion() {
     return () => {
       cancelAnimationFrame(t);
       clearTimeout(t2);
+      if (refreshT) clearTimeout(refreshT);
       ro.disconnect();
       ctx?.revert();
     };

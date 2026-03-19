@@ -25,14 +25,18 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
   const pathname = usePathname();
 
   useEffect(() => {
+    // Use native scroll on touch devices to avoid mobile scroll lag; keep smooth wheel on desktop
+    const isTouch =
+      typeof window !== "undefined" &&
+      (window.matchMedia("(pointer: coarse)").matches || "ontouchstart" in window);
     const instance = new Lenis({
       duration: 1.15,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
       smoothWheel: true,
-      syncTouch: true,
-      syncTouchLerp: 0.075,
-      touchMultiplier: 1.15,
+      syncTouch: !isTouch,
+      syncTouchLerp: isTouch ? 0.1 : 0.075,
+      touchMultiplier: isTouch ? 1 : 1.15,
       wheelMultiplier: 0.9,
     });
 
@@ -42,6 +46,15 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
       ScrollTrigger.update();
     });
 
+    // When using native touch scroll, Lenis may not emit; keep ScrollTrigger in sync
+    let tick: number | null = null;
+    const onNativeScroll = () => {
+      if (tick == null) tick = requestAnimationFrame(() => { ScrollTrigger.update(); tick = null; });
+    };
+    if (isTouch) {
+      window.addEventListener("scroll", onNativeScroll, { passive: true });
+    }
+
     function raf(time: number) {
       instance.raf(time);
       requestAnimationFrame(raf);
@@ -49,6 +62,7 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
     requestAnimationFrame(raf);
 
     return () => {
+      if (isTouch) window.removeEventListener("scroll", onNativeScroll);
       instance.destroy();
       setLenis(null);
     };

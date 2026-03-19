@@ -21,9 +21,17 @@ export function Services() {
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
+    // Skip per-card ScrollTrigger on touch devices to reduce mobile scroll jank
+    const isTouch =
+      typeof window !== "undefined" &&
+      (window.matchMedia("(pointer: coarse)").matches || "ontouchstart" in window);
     const ctx = gsap.context(() => {
       cardsRef.current.forEach((el, i) => {
         if (!el) return;
+        if (isTouch) {
+          gsap.set(el, { opacity: 1, y: 0 });
+          return;
+        }
         gsap.fromTo(
           el,
           { opacity: 0, y: 60 },
@@ -64,7 +72,7 @@ export function Services() {
           {PORTFOLIO_INTRO}
         </p>
 
-        <div className="admotion-bento mt-5 grid grid-cols-1 gap-3 sm:mt-8 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
+        <div className="admotion-bento mt-5 grid grid-cols-1 gap-2 sm:mt-8 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
           {SERVICES.map((service, i) => (
             <div
               key={service.id}
