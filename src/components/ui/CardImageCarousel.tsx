@@ -191,9 +191,10 @@ export function CardImageCarousel({
               width={Math.max(1, Math.round(width))}
               height={Math.max(1, Math.round(height))}
               className="object-cover"
-              sizes={`${Math.max(1, Math.round(width))}px`}
-              unoptimized={src.startsWith("/")}
+              sizes="(max-width: 640px) 95vw, (max-width: 1024px) 48vw, 380px"
+              quality={80}
               draggable={false}
+              placeholder="empty"
             />
           </div>
         ))}

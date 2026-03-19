@@ -19,7 +19,8 @@ export function HeroBackground() {
         className="object-cover"
         sizes="100vw"
         priority
-        unoptimized
+        quality={82}
+        placeholder="empty"
       />
       {/* Dark overlay so white text is readable */}
       <div

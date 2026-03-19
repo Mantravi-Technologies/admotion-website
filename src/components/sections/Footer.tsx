@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { CONTACT, BRAND } from "@/content/site";
 
@@ -7,9 +8,10 @@ export function Footer() {
   const telHref = `tel:+91${CONTACT.phone.replace(/\D/g, "")}`;
 
   return (
+    <>
     <footer
       id="contact"
-      className="relative z-10 border-t border-surface px-6 pt-16 pb-16 md:pt-20 md:pb-24"
+      className="relative z-10 border-t border-surface px-6 pt-16 pb-24 md:pt-20 md:pb-32"
     >
       <div className="mx-auto max-w-6xl">
         <h2
@@ -65,5 +67,27 @@ export function Footer() {
         </div>
       </div>
     </footer>
+
+    {/* Fixed footer bar: always visible at bottom */}
+    <div
+      className="fixed bottom-0 left-0 right-0 z-[99] flex items-center justify-between border-t border-surface/60 bg-bg/95 px-4 py-3 backdrop-blur-sm md:px-6"
+      role="contentinfo"
+    >
+      <p className="text-xs text-text-muted md:text-sm">
+        © {new Date().getFullYear()} {BRAND.name}. {BRAND.tagline}
+      </p>
+      <nav className="flex items-center gap-6 text-xs text-text-muted md:gap-8 md:text-sm">
+        <Link href="#contact" className="transition-colors hover:text-white">
+          Contact
+        </Link>
+        <Link href="#services" className="transition-colors hover:text-white">
+          Services
+        </Link>
+        <Link href="#work" className="transition-colors hover:text-white">
+          Work
+        </Link>
+      </nav>
+    </div>
+    </>
   );
 }

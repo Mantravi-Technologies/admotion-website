@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { WORK_PROJECTS, getProjectImageSrcs } from "@/content/work";
 import { CardImageCarousel } from "@/components/ui/CardImageCarousel";
@@ -381,12 +382,15 @@ function WorkCardLightbox({
           </button>
         </>
       )}
-      <div className="flex min-h-0 flex-1 flex-col items-center justify-center px-2 pb-10 pt-11 md:px-3 md:pb-12 md:pt-12">
-        {/* eslint-disable-next-line @next/next/no-img-element -- avoid fill/layout edge cases in overlay */}
-        <img
+      <div className="relative flex min-h-0 flex-1 flex-col items-center justify-center px-2 pb-10 pt-11 md:px-3 md:pb-12 md:pt-12">
+        <Image
           src={src}
           alt=""
+          width={800}
+          height={520}
           className="max-h-[min(72vh,520px)] w-full max-w-full object-contain"
+          sizes="(max-width: 900px) 100vw, 800px"
+          quality={85}
           draggable={false}
         />
       </div>

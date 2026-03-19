@@ -17,7 +17,7 @@ export function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed left-0 right-0 top-0 z-50 border-b border-surface/50 bg-bg/80 backdrop-blur-md">
+    <header className="fixed left-0 right-0 top-0 z-[100] w-full border-b border-surface/50 bg-bg/90 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <Link href="/" className="relative block h-8 w-auto md:h-9" aria-label="AdMotion home">
           <Image
@@ -27,7 +27,7 @@ export function Header() {
             height={36}
             className="h-8 w-auto object-contain object-left md:h-9"
             priority
-            unoptimized
+            placeholder="empty"
           />
         </Link>
 
